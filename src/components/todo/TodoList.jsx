@@ -1,14 +1,17 @@
 import React from "react";
 import { Box, Button, Stack } from "@mui/material";
-
-const TODO_LIST = [
-  { id: 1, task: "学習" },
-  { id: 2, task: "芋ほり" },
-];
-
-console.log(TODO_LIST);
+import { useDispatch, useSelector } from "react-redux";
 
 function TodoList() {
+  const todos = useSelector((state) => state.todos);
+  //   const [ currentTodo, setCurrentTodo ] =useState()
+
+  const dispatch = useDispatch();
+
+  const deleteTodo = (e) => {
+    console.log(e.target.parentNode);
+  };
+
   return (
     <Stack
       direction="column"
@@ -19,7 +22,7 @@ function TodoList() {
         margin: 2,
       }}
     >
-      {TODO_LIST.map((todo) => {
+      {todos.map((todo) => {
         return (
           <Box
             key={todo.id}
@@ -30,13 +33,25 @@ function TodoList() {
               p: 1,
               m: 1,
               background:
-                " linear-gradient(167deg, rgba(255, 167, 247, 1), rgba(255, 137, 179, 1) 19%, rgba(224, 216, 239, 1) 31%, rgba(216, 237, 255, 1) 61%)",
+                "linear-gradient(167deg, rgba(255, 167, 247, 1), rgba(255, 137, 179, 1) 19%, rgba(224, 216, 239, 1) 31%, rgba(216, 237, 255, 1) 61%)",
               borderRadius: 1,
               width: 500,
+              boxShadow: "0px 2px 7px 0px rgba(0, 0, 0, 0.35)",
             }}
           >
             <Box>{todo.task}</Box>
-            <Button>削除</Button>
+            <Button
+              onClick={(e) => deleteTodo(e)}
+              sx={{
+                color: "red",
+                background: "pink",
+                "&:hover": {
+                  background: "rgba(8, 33, 0, 0.26)",
+                },
+              }}
+            >
+              削除
+            </Button>
           </Box>
         );
       })}
