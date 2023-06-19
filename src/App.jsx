@@ -1,4 +1,6 @@
 import "./App.css";
+import TodoInput from "./components/todo/TodoInput";
+import TodoList from "./components/todo/TodoList";
 
 //ストアにstate[]を登録
 //TODOはローカルストレージのオブジェクトを初期値とする
@@ -13,7 +15,13 @@ import "./App.css";
 //
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <h1>TODOアプリ</h1>
+      <TodoInput />
+      <TodoList />
+    </>
+  );
 }
 
 export default App;
