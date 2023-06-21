@@ -1,15 +1,14 @@
 import React from "react";
 import { Box, Button, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { remove } from "../../features/todoSlice";
 
 function TodoList() {
   const todos = useSelector((state) => state.todos);
-  //   const [ currentTodo, setCurrentTodo ] =useState()
-
   const dispatch = useDispatch();
 
-  const deleteTodo = (e) => {
-    console.log(e.target.parentNode);
+  const deleteTodo = (e, todo) => {
+    dispatch(remove(todo));
   };
 
   return (
@@ -41,7 +40,7 @@ function TodoList() {
           >
             <Box>{todo.task}</Box>
             <Button
-              onClick={(e) => deleteTodo(e)}
+              onClick={(e) => deleteTodo(e, todo)}
               sx={{
                 color: "red",
                 background: "pink",
